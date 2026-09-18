@@ -1,0 +1,50 @@
+KIOSCO - SISTEMA DE GESTION (C# / .NET 8 / Windows Forms)
+==========================================================
+
+REQUISITOS
+- Windows 10 u 11.
+- Visual Studio 2022 (carga de trabajo "Desarrollo de escritorio con .NET")
+  o el SDK de .NET 8 (o 6/7) para compilar por consola.
+- Abrir "Kiosco.sln" y ejecutar (F5), o por consola:  dotnet run --project Kiosco
+
+NOTA TECNICA
+- La persistencia usa BinaryFormatter, que esta obsoleto y fue eliminado en .NET 9.
+  Por eso el proyecto apunta a net8.0-windows y habilita
+  EnableUnsafeBinaryFormatterSerialization en Kiosco.csproj.
+  No cambiar el framework a .NET 9 o superior sin reemplazar la serializacion.
+
+CONTRASENA DEL ADMINISTRADOR
+- Contrasena por defecto: 123123
+
+ORDEN RECOMENDADO DE CARGA DE DATOS
+1) Ingresar como Administrador (contrasena 123123).
+2) Cargar primero los EMPLEADOS (nombre, apellido, DNI, fecha de nacimiento,
+   contrasena de al menos 4 caracteres y sueldo por dia).
+3) Cargar luego los PRODUCTOS (codigo numerico, nombre, categoria, precio, stock).
+4) Opcional: configurar promociones o ajustar precios por categoria.
+5) Cerrar sesion e ingresar como EMPLEADO: al ingresar se marca la asistencia del dia.
+6) El empleado debe ABRIR LA CAJA (con un monto inicial) antes de poder vender.
+7) Nueva venta: buscar producto, cantidad, agregar al carrito, elegir medio de pago
+   y confirmar. Se descuenta el stock y se genera el ticket .txt.
+8) Al terminar el turno, cerrar la caja (desde el panel del empleado o desde
+   Reportes > Cierre de caja del administrador).
+
+REPORTES (ADMINISTRADOR)
+- Historial de ventas por rango de fechas (doble clic sobre una venta = ver ticket).
+- Ventas, dias trabajados y sueldo a pagar por empleado (dias trabajados x sueldo por dia).
+- Cierre de caja e historial de cierres.
+
+CARPETAS QUE SE CREAN EN "DOCUMENTOS"
+- Documentos\ArchivosKiosco\sistema.dat   -> todo el estado del sistema (guardado automatico).
+- Documentos\TicketsKiosco\               -> un .txt por cada venta confirmada.
+ADVERTENCIA: al terminar de probar, conviene BORRAR ambas carpetas para
+empezar de cero (o el sistema conservara los datos de prueba).
+Si sistema.dat se daña o se modifica la estructura de las clases, la aplicacion
+avisa que no puede abrirlo y se cierra sin tocar el archivo.
+
+ESTRUCTURA DEL PROYECTO
+- Kiosco\Modelo\         Persona (abstracta) > Empleado / Administrador, Producto, Venta,
+                         ItemVenta, Caja, CierreCaja, Asistencia, MedioPago y Sistema.
+- Kiosco\Formularios\    Una pantalla por Form (.cs, .Designer.cs y .resx).
+- Kiosco\Utilidades\     Validador (ErrorProvider + Tag) y Estilo (aspecto comun).
+- Kiosco\Resources\      Imagen decorativa (logo.png).
