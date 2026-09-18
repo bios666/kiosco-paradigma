@@ -71,7 +71,9 @@ namespace Kiosco
                         return $"Debe tener al menos {LargoMinimoContrasena} caracteres.";
                     return null;
 
-                // "Decimal": obligatorio y número no negativo (acepta coma o punto según la configuración regional).
+                // "Decimal": obligatorio y número no negativo, interpretado con la configuración regional de Windows.
+                // Ojo: en español el separador decimal es la coma y el punto es separador de miles, así que
+                // "12.5" se lee como 125 (no da error). Con configuración regional en inglés es al revés.
                 // Los formularios que necesitan un valor mayor a cero (precio, sueldo) lo controlan aparte.
                 case "Decimal":
                     if (texto.Length == 0) return "Campo obligatorio.";

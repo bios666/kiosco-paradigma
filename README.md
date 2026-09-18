@@ -28,7 +28,12 @@ O abrir `Kiosco.sln` en Visual Studio y ejecutar con F5.
 - Se crean las carpetas `Documentos\ArchivosKiosco` (datos) y `Documentos\TicketsKiosco`
   (tickets). Conviene borrarlas después de probar.
 
-Más detalle en [`IMPORTANTE ANTES DE USAR.txt`](IMPORTANTE%20ANTES%20DE%20USAR.txt).
+## Documentación
+
+- **[MANUAL.md](MANUAL.md)**: guía de uso pantalla por pantalla, reglas de negocio, validaciones y
+  explicación de cómo funciona por dentro (clases, persistencia, navegación), con diagramas.
+- [`IMPORTANTE ANTES DE USAR.txt`](IMPORTANTE%20ANTES%20DE%20USAR.txt): resumen rápido de uso.
+- Todo el código tiene comentarios XML (`///`) en español.
 
 ## Estructura
 
@@ -38,4 +43,5 @@ Más detalle en [`IMPORTANTE ANTES DE USAR.txt`](IMPORTANTE%20ANTES%20DE%20USAR.
 | `Kiosco/Formularios` | Una pantalla por Form (`.cs`, `.Designer.cs`, `.resx`) |
 | `Kiosco/Utilidades` | `Validador` (ErrorProvider + Tag) y `Estilo` |
 | `Kiosco/Resources` | Imagen decorativa |
+| `MANUAL.md` | Manual de uso y funcionamiento |
 | `PROMPT_KIOSCO.md` | Prompt con el que se especificó el proyecto |

@@ -13,6 +13,9 @@ NOTA TECNICA
   EnableUnsafeBinaryFormatterSerialization en Kiosco.csproj.
   No cambiar el framework a .NET 9 o superior sin reemplazar la serializacion.
 
+MANUAL COMPLETO
+- Ver MANUAL.md (guia de uso, reglas de negocio y funcionamiento interno).
+
 CONTRASENA DEL ADMINISTRADOR
 - Contrasena por defecto: 123123
 
