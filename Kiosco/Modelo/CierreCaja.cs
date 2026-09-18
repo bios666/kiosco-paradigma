@@ -33,6 +33,12 @@ namespace Kiosco
         /// <summary>
         /// Crea el resumen de un cierre de caja.
         /// </summary>
+        /// <param name="fechaApertura">Momento en que se abrió la caja.</param>
+        /// <param name="fechaCierre">Momento en que se cerró.</param>
+        /// <param name="montoInicial">Dinero con el que se abrió.</param>
+        /// <param name="totalEfectivo">Total cobrado en efectivo durante el turno.</param>
+        /// <param name="totalTarjeta">Total cobrado con tarjeta durante el turno.</param>
+        /// <param name="cantidadVentas">Cantidad de ventas del turno.</param>
         public CierreCaja(DateTime fechaApertura, DateTime fechaCierre, decimal montoInicial,
                           decimal totalEfectivo, decimal totalTarjeta, int cantidadVentas)
         {

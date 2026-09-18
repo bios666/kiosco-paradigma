@@ -5,12 +5,16 @@ namespace Kiosco
     /// </summary>
     public partial class FormPanelEmpleado : Form
     {
+        /// <summary>Sistema con todos los datos (empleados, productos y caja). Se recibe por constructor.</summary>
         private readonly Sistema sistema;
+        /// <summary>Empleado que inició sesión.</summary>
         private readonly Empleado empleado;
 
         /// <summary>
         /// Crea el panel del empleado.
         /// </summary>
+        /// <param name="sistema">Sistema con los datos del kiosco (empleados, productos y caja).</param>
+        /// <param name="empleado">Empleado que inició sesión.</param>
         public FormPanelEmpleado(Sistema sistema, Empleado empleado)
         {
             this.sistema = sistema;

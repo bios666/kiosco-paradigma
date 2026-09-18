@@ -5,12 +5,15 @@ namespace Kiosco
     /// </summary>
     public partial class FormProductos : Form
     {
+        /// <summary>Cantidad de unidades a partir de la cual el producto se marca en rojo como "stock bajo".</summary>
         private const int StockBajo = 5;
+        /// <summary>Sistema con todos los datos (empleados, productos y caja). Se recibe por constructor.</summary>
         private readonly Sistema sistema;
 
         /// <summary>
         /// Crea el formulario de gestión de productos.
         /// </summary>
+        /// <param name="sistema">Sistema con los datos del kiosco (empleados, productos y caja).</param>
         public FormProductos(Sistema sistema)
         {
             this.sistema = sistema;
@@ -71,6 +74,8 @@ namespace Kiosco
         /// <summary>Devuelve el producto seleccionado (o null).</summary>
         private Producto ProductoSeleccionado()
         {
+            // ClearSelection() deja CurrentRow apuntando a una fila que ya no está seleccionada,
+            // por eso también se pregunta por Selected.
             if (dgvProductos.CurrentRow == null || !dgvProductos.CurrentRow.Selected) return null;
             return dgvProductos.CurrentRow.Tag as Producto;
         }

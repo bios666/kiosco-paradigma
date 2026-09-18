@@ -9,7 +9,9 @@ namespace Kiosco
     [Serializable]
     public class Venta
     {
+        /// <summary>Ancho en caracteres del ticket de texto.</summary>
         private const int AnchoTicket = 44;
+        /// <summary>Renglones de la venta. Es privada para que solo se modifique con AgregarItem y QuitarItem.</summary>
         private readonly List<ItemVenta> items = new List<ItemVenta>();
 
         /// <summary>Número correlativo de la venta (lo asigna la caja).</summary>
@@ -34,8 +36,10 @@ namespace Kiosco
         public decimal Total => items.Sum(i => i.Subtotal);
 
         /// <summary>
-        /// Crea una venta vacía (carrito) para un empleado.
+        /// Crea una venta vacía (carrito) para un empleado. Se guardan su nombre y DNI como texto
+        /// para que el historial no dependa de que el empleado siga existiendo.
         /// </summary>
+        /// <param name="empleado">Empleado que realiza la venta.</param>
         public Venta(Empleado empleado)
         {
             EmpleadoNombre = empleado.NombreCompleto;
@@ -45,6 +49,9 @@ namespace Kiosco
         /// <summary>
         /// Agrega un producto al carrito. Si ya estaba, suma la cantidad.
         /// </summary>
+        /// <param name="producto">Producto a agregar (se toma su precio final con promoción).</param>
+        /// <param name="cantidad">Unidades a agregar (mayor a cero).</param>
+        /// <exception cref="ArgumentException">Si la cantidad es cero o negativa.</exception>
         /// <exception cref="InvalidOperationException">Si la cantidad total supera el stock.</exception>
         public void AgregarItem(Producto producto, int cantidad)
         {
@@ -64,6 +71,7 @@ namespace Kiosco
         }
 
         /// <summary>Quita un renglón del carrito.</summary>
+        /// <param name="item">Renglón a quitar.</param>
         public void QuitarItem(ItemVenta item)
         {
             items.Remove(item);
@@ -72,6 +80,7 @@ namespace Kiosco
         /// <summary>
         /// Confirma la venta: fija el medio de pago y la fecha y hora.
         /// </summary>
+        /// <param name="medioPago">Medio de pago elegido.</param>
         public void Confirmar(MedioPago medioPago)
         {
             MedioPago = medioPago;
@@ -81,6 +90,7 @@ namespace Kiosco
         /// <summary>
         /// Arma el texto del ticket de la venta.
         /// </summary>
+        /// <returns>El ticket completo, listo para mostrar o guardar en un archivo de texto.</returns>
         public string ArmarTicket()
         {
             string linea = new string('=', AnchoTicket);
@@ -111,7 +121,9 @@ namespace Kiosco
         /// <summary>
         /// Genera el archivo de texto del ticket en la carpeta indicada.
         /// </summary>
+        /// <param name="carpeta">Carpeta donde se crea el archivo (se crea si no existe).</param>
         /// <returns>Ruta completa del archivo generado.</returns>
+        /// <exception cref="IOException">Si no se puede escribir el archivo.</exception>
         public string GenerarTicket(string carpeta)
         {
             Directory.CreateDirectory(carpeta);

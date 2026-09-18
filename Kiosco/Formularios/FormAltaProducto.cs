@@ -5,10 +5,13 @@ namespace Kiosco
     /// </summary>
     public partial class FormAltaProducto : Form
     {
+        /// <summary>Categorías sugeridas en el combo. Se les suman las que ya usan los productos cargados.</summary>
         private static readonly string[] CategoriasBase =
             { "Golosinas", "Bebidas", "Snacks", "Cigarrillos", "Lácteos", "Panificados", "Limpieza", "Otros" };
 
+        /// <summary>Sistema con todos los datos (empleados, productos y caja). Se recibe por constructor.</summary>
         private readonly Sistema sistema;
+        /// <summary>Producto que se está editando. Es null cuando el formulario se usa para un alta.</summary>
         private readonly Producto productoEditado;
 
         /// <summary>

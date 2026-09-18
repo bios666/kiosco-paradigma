@@ -7,11 +7,13 @@ namespace Kiosco
     /// </summary>
     public partial class FormEmpleados : Form
     {
+        /// <summary>Sistema con todos los datos (empleados, productos y caja). Se recibe por constructor.</summary>
         private readonly Sistema sistema;
 
         /// <summary>
         /// Crea el formulario de gestión de empleados.
         /// </summary>
+        /// <param name="sistema">Sistema con los datos del kiosco (empleados, productos y caja).</param>
         public FormEmpleados(Sistema sistema)
         {
             this.sistema = sistema;
@@ -57,6 +59,8 @@ namespace Kiosco
         /// <summary>Devuelve el empleado seleccionado en la grilla (o null).</summary>
         private Empleado EmpleadoSeleccionado()
         {
+            // ClearSelection() deja CurrentRow apuntando a una fila que ya no está seleccionada,
+            // por eso también se pregunta por Selected.
             if (dgvEmpleados.CurrentRow == null || !dgvEmpleados.CurrentRow.Selected) return null;
             return dgvEmpleados.CurrentRow.Tag as Empleado;
         }

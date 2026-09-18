@@ -5,6 +5,7 @@ namespace Kiosco
     /// </summary>
     public partial class FormInicio : Form
     {
+        /// <summary>Sistema con todos los datos (empleados, productos y caja). Se recibe por constructor.</summary>
         private readonly Sistema sistema;
 
         /// <summary>
@@ -22,6 +23,8 @@ namespace Kiosco
         /// <summary>Abre el login de administrador y, si es correcto, su panel.</summary>
         private void btnAdministrador_Click(object sender, EventArgs e)
         {
+            // Patrón de navegación: se oculta esta pantalla, se abren las siguientes con ShowDialog()
+            // (bloquean hasta cerrarse) y al volver se la muestra de nuevo.
             Hide();
             using (FormLoginAdmin login = new FormLoginAdmin(sistema))
             {

@@ -6,13 +6,18 @@ namespace Kiosco
     /// </summary>
     public partial class FormVenta : Form
     {
+        /// <summary>Sistema con todos los datos (empleados, productos y caja). Se recibe por constructor.</summary>
         private readonly Sistema sistema;
+        /// <summary>Empleado que inició sesión.</summary>
         private readonly Empleado empleado;
+        /// <summary>Venta en armado (carrito). Se reemplaza por una nueva después de cada venta confirmada.</summary>
         private Venta ventaActual;
 
         /// <summary>
         /// Crea la pantalla de venta.
         /// </summary>
+        /// <param name="sistema">Sistema con los datos del kiosco (empleados, productos y caja).</param>
+        /// <param name="empleado">Empleado que inició sesión.</param>
         public FormVenta(Sistema sistema, Empleado empleado)
         {
             this.sistema = sistema;
@@ -107,6 +112,10 @@ namespace Kiosco
             AgregarProductoSeleccionado();
         }
 
+        /// <summary>
+        /// Agrega al carrito el producto seleccionado en la grilla, con la cantidad del control numérico.
+        /// Si la cantidad supera el stock disponible, avisa y no agrega nada.
+        /// </summary>
         private void AgregarProductoSeleccionado()
         {
             if (dgvProductos.CurrentRow == null || !dgvProductos.CurrentRow.Selected ||
@@ -149,6 +158,7 @@ namespace Kiosco
         /// <summary>Confirma la venta: descuenta stock, la registra y genera el ticket.</summary>
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
+            // 1) Validaciones previas: carrito con productos y medio de pago elegido.
             if (ventaActual.Items.Count == 0)
             {
                 MessageBox.Show("El carrito está vacío.", "Venta", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -156,12 +166,15 @@ namespace Kiosco
             }
             if (!Validador.ValidarControles(this, errorProvider)) return;
 
+            // 2) Confirmación del usuario.
             MedioPago medio = (MedioPago)cmbMedioPago.SelectedItem;
             DialogResult respuesta = MessageBox.Show(
                 $"Total a cobrar: {ventaActual.Total:$0.00}\nMedio de pago: {medio}\n\n¿Confirmar la venta?",
                 "Confirmar venta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (respuesta != DialogResult.Yes) return;
 
+            // 3) Se registra la venta (verifica caja y stock, descuenta stock, numera y guarda en la caja).
+            //    Si algo falla, la excepción llega antes de modificar cualquier dato.
             try
             {
                 empleado.RealizarVenta(ventaActual, medio, sistema);
@@ -172,8 +185,10 @@ namespace Kiosco
                 return;
             }
 
+            // 4) Se guarda en disco enseguida, para no perder la venta si el programa se cierra.
             sistema.Guardar();
 
+            // 5) Ticket .txt. Si falla la escritura, la venta igual queda registrada y solo se avisa.
             string mensaje = $"Venta N° {ventaActual.Numero:000000} registrada por {ventaActual.Total:$0.00}.";
             MessageBoxIcon icono = MessageBoxIcon.Information;
             try
@@ -188,7 +203,7 @@ namespace Kiosco
             }
             MessageBox.Show(mensaje, "Venta registrada", MessageBoxButtons.OK, icono);
 
-            // Se prepara una venta nueva para el próximo cliente.
+            // 6) Se prepara una venta nueva para el próximo cliente.
             ventaActual = new Venta(empleado);
             cmbMedioPago.SelectedIndex = -1;
             errorProvider.SetError(cmbMedioPago, string.Empty);

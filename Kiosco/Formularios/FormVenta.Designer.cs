@@ -1,9 +1,26 @@
+// ============================================================================
+// FormVenta.Designer.cs
+// Parte "diseño" del formulario FormVenta: pantalla de venta con productos, carrito y medio de pago.
+//
+// Este archivo lo genera y mantiene el Diseñador de Windows Forms de Visual Studio:
+// define qué controles tiene la pantalla (posición, tamaño, texto y eventos).
+// Si se edita el formulario con el Diseñador, Visual Studio lo reescribe, por eso
+// no se comentan los controles uno por uno. Los nombres siguen un prefijo por tipo:
+// lbl = Label, txt = TextBox, cmb = ComboBox, btn = Button, dgv = DataGridView,
+// nud = NumericUpDown, dtp = DateTimePicker, rb = RadioButton, pic = PictureBox.
+// La lógica (eventos, validaciones y acceso a los datos) está en FormVenta.cs.
+// ============================================================================
+
 namespace Kiosco
 {
     partial class FormVenta
     {
         private System.ComponentModel.IContainer components = null;
 
+        /// <summary>
+        /// Libera los recursos que usa el formulario.
+        /// </summary>
+        /// <param name="disposing">true si se deben liberar también los recursos administrados.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -15,6 +32,9 @@ namespace Kiosco
 
         #region Código generado por el Diseñador de Windows Forms
 
+        /// <summary>
+        /// Crea y configura los controles del formulario. No editar a mano: lo regenera el Diseñador.
+        /// </summary>
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();

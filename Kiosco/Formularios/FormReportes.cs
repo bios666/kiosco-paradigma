@@ -5,11 +5,13 @@ namespace Kiosco
     /// </summary>
     public partial class FormReportes : Form
     {
+        /// <summary>Sistema con todos los datos (empleados, productos y caja). Se recibe por constructor.</summary>
         private readonly Sistema sistema;
 
         /// <summary>
         /// Crea el formulario de reportes.
         /// </summary>
+        /// <param name="sistema">Sistema con los datos del kiosco (empleados, productos y caja).</param>
         public FormReportes(Sistema sistema)
         {
             this.sistema = sistema;
@@ -105,7 +107,9 @@ namespace Kiosco
                     suyas.Sum(v => v.Total).ToString("$0.00"), emp.DiasTrabajados(desde, hasta), sueldo.ToString("$0.00"));
             }
 
-            // Empleados dados de baja que tienen ventas en el período.
+            // Empleados dados de baja que tienen ventas en el período: ya no están en la lista de empleados,
+            // pero sus ventas siguen en el historial, así que se agrupan por el DNI guardado en cada venta.
+            // No muestran días ni sueldo porque se pierden sus asistencias al darlos de baja.
             foreach (var grupo in ventas.Where(v => sistema.BuscarEmpleado(v.EmpleadoDni) == null)
                                         .GroupBy(v => v.EmpleadoDni))
             {
@@ -171,6 +175,7 @@ namespace Kiosco
             if (e.RowIndex >= 0) MostrarTicketSeleccionado();
         }
 
+        /// <summary>Muestra el texto del ticket de la venta seleccionada en la grilla (o avisa si no hay selección).</summary>
         private void MostrarTicketSeleccionado()
         {
             if (dgvVentas.CurrentRow == null || !dgvVentas.CurrentRow.Selected ||

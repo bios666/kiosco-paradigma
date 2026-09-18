@@ -7,12 +7,15 @@ namespace Kiosco
     /// </summary>
     public partial class FormAltaEmpleado : Form
     {
+        /// <summary>Edad mínima para poder registrar a una persona como empleado.</summary>
         private const int EdadMinima = 16;
+        /// <summary>Sistema con todos los datos (empleados, productos y caja). Se recibe por constructor.</summary>
         private readonly Sistema sistema;
 
         /// <summary>
         /// Crea el formulario de alta de empleado.
         /// </summary>
+        /// <param name="sistema">Sistema con los datos del kiosco (empleados, productos y caja).</param>
         public FormAltaEmpleado(Sistema sistema)
         {
             this.sistema = sistema;
@@ -38,9 +41,10 @@ namespace Kiosco
         /// <summary>Valida los datos y da de alta al empleado.</summary>
         private void btnGuardar_Click(object sender, EventArgs e)
         {
+            // 1) Validación común de los campos según su Tag (letras, números, contraseña, etc.).
             if (!Validador.ValidarControles(this, errorProvider)) return;
 
-            // Fecha de nacimiento: la combinación de día, mes y año tiene que existir (ej. no vale 31/02).
+            // 2) Fecha de nacimiento: la combinación de día, mes y año tiene que existir (ej. no vale 31/02).
             int dia = (int)cmbDia.SelectedItem;
             int mes = cmbMes.SelectedIndex + 1;
             int anio = (int)cmbAnio.SelectedItem;
@@ -53,12 +57,14 @@ namespace Kiosco
             }
             DateTime fechaNacimiento = new DateTime(anio, mes, dia);
 
+            // 3) DNI de 7 u 8 dígitos y mayor a cero.
             if (txtDni.Text.Length < 7 || !int.TryParse(txtDni.Text, out int dni) || dni <= 0)
             {
                 errorProvider.SetError(txtDni, "El DNI debe tener 7 u 8 dígitos.");
                 return;
             }
 
+            // 4) El sueldo por día tiene que ser mayor a cero (el Tag "Decimal" también acepta 0).
             decimal.TryParse(txtSueldo.Text, out decimal sueldo);
             if (sueldo <= 0)
             {
@@ -66,6 +72,7 @@ namespace Kiosco
                 return;
             }
 
+            // 5) Alta: el administrador rechaza el DNI si ya existe otro empleado con ese número.
             Empleado empleado = new Empleado(
                 txtNombres.Text.Trim(), txtApellidos.Text.Trim(), dni, fechaNacimiento,
                 txtContrasena.Text.Trim(), sueldo);

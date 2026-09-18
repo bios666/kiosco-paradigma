@@ -18,6 +18,8 @@ namespace Kiosco
             {
                 sistema = Sistema.Abrir();
             }
+            // Si el archivo existe pero no se puede leer, se avisa y se sale SIN crear uno nuevo:
+            // al guardar de nuevo se pisarían datos que quizás se puedan recuperar.
             catch (Exception ex)
             {
                 MessageBox.Show(

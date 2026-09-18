@@ -25,6 +25,10 @@ namespace Kiosco
         /// <summary>
         /// Crea un renglón de venta.
         /// </summary>
+        /// <param name="codigo">Código del producto vendido.</param>
+        /// <param name="nombre">Nombre del producto al momento de la venta.</param>
+        /// <param name="precioUnitario">Precio cobrado por unidad (ya con la promoción aplicada).</param>
+        /// <param name="cantidad">Unidades vendidas.</param>
         public ItemVenta(string codigo, string nombre, decimal precioUnitario, int cantidad)
         {
             Codigo = codigo;

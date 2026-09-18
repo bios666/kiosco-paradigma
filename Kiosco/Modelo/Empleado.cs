@@ -6,6 +6,7 @@ namespace Kiosco
     [Serializable]
     public class Empleado : Persona
     {
+        /// <summary>Ventas del empleado. Son las mismas instancias que guarda la Caja (no copias).</summary>
         private readonly List<Venta> ventas = new List<Venta>();
 
         /// <summary>Contraseña propia del empleado.</summary>
@@ -20,6 +21,12 @@ namespace Kiosco
         /// <summary>
         /// Crea un empleado.
         /// </summary>
+        /// <param name="nombres">Nombres del empleado.</param>
+        /// <param name="apellidos">Apellidos del empleado.</param>
+        /// <param name="dni">DNI del empleado (también lo identifica en las ventas).</param>
+        /// <param name="fechaNacimiento">Fecha de nacimiento.</param>
+        /// <param name="contrasena">Contraseña con la que ingresa al sistema.</param>
+        /// <param name="sueldoPorDia">Sueldo que se le paga por cada día trabajado.</param>
         public Empleado(string nombres, string apellidos, int dni, DateTime fechaNacimiento,
                         string contrasena, decimal sueldoPorDia)
             : base(nombres, apellidos, dni, fechaNacimiento)
@@ -29,6 +36,8 @@ namespace Kiosco
         }
 
         /// <summary>Verifica la contraseña ingresada.</summary>
+        /// <param name="contrasena">Texto que escribió el usuario.</param>
+        /// <returns>true si coincide exactamente con la contraseña del empleado.</returns>
         public bool ValidarContrasena(string contrasena)
         {
             return Contrasena == contrasena;
@@ -74,6 +83,8 @@ namespace Kiosco
         }
 
         /// <summary>Ventas realizadas por el empleado desde que se abrió la caja actual.</summary>
+        /// <param name="caja">Caja de la que se toma el momento de apertura del turno.</param>
+        /// <returns>Las ventas del turno; vacío si la caja está cerrada.</returns>
         public IEnumerable<Venta> VentasDelTurno(Caja caja)
         {
             if (!caja.Abierta) return Enumerable.Empty<Venta>();

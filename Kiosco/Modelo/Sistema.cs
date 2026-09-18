@@ -52,12 +52,16 @@ namespace Kiosco
         }
 
         /// <summary>Busca un empleado por DNI. Devuelve null si no existe.</summary>
+        /// <param name="dni">DNI a buscar.</param>
+        /// <returns>El empleado encontrado o null.</returns>
         public Empleado BuscarEmpleado(int dni)
         {
             return Empleados.Find(e => e.Dni == dni);
         }
 
         /// <summary>Busca un producto por código. Devuelve null si no existe.</summary>
+        /// <param name="codigo">Código a buscar.</param>
+        /// <returns>El producto encontrado o null.</returns>
         public Producto BuscarProducto(string codigo)
         {
             return Productos.Find(p => p.Codigo == codigo);
@@ -69,6 +73,7 @@ namespace Kiosco
         /// </summary>
         public void Guardar()
         {
+            // La carpeta se crea la primera vez (no falla si ya existe).
             Directory.CreateDirectory(Rutas.CarpetaArchivos);
             string temporal = Rutas.ArchivoSistema + ".tmp";
 
@@ -76,6 +81,7 @@ namespace Kiosco
             {
                 new BinaryFormatter().Serialize(flujo, this);
             }
+            // Recién con la escritura completa se reemplaza el archivo anterior (true = sobrescribir).
             File.Move(temporal, Rutas.ArchivoSistema, true);
         }
 
@@ -83,6 +89,10 @@ namespace Kiosco
         /// Abre el sistema guardado en disco. Si todavía no existe el archivo
         /// (primera ejecución) devuelve un sistema nuevo.
         /// </summary>
+        /// <returns>El sistema cargado del archivo, o uno vacío si el archivo no existe.</returns>
+        /// <exception cref="System.Runtime.Serialization.SerializationException">
+        /// Si el archivo existe pero está dañado o no coincide con la estructura actual de las clases.
+        /// </exception>
         public static Sistema Abrir()
         {
             try
@@ -92,6 +102,7 @@ namespace Kiosco
                     return (Sistema)new BinaryFormatter().Deserialize(flujo);
                 }
             }
+            // Primera ejecución: todavía no existe sistema.dat, se empieza con un sistema vacío.
             catch (FileNotFoundException)
             {
                 return new Sistema();

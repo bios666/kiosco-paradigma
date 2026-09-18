@@ -5,12 +5,16 @@ namespace Kiosco
     /// </summary>
     public partial class FormMisVentas : Form
     {
+        /// <summary>Sistema con todos los datos (empleados, productos y caja). Se recibe por constructor.</summary>
         private readonly Sistema sistema;
+        /// <summary>Empleado que inició sesión.</summary>
         private readonly Empleado empleado;
 
         /// <summary>
         /// Crea el formulario de historial del empleado.
         /// </summary>
+        /// <param name="sistema">Sistema con los datos del kiosco (empleados, productos y caja).</param>
+        /// <param name="empleado">Empleado que inició sesión.</param>
         public FormMisVentas(Sistema sistema, Empleado empleado)
         {
             this.sistema = sistema;
@@ -76,6 +80,7 @@ namespace Kiosco
             if (e.RowIndex >= 0) MostrarTicketSeleccionado();
         }
 
+        /// <summary>Muestra el texto del ticket de la venta seleccionada en la grilla (o avisa si no hay selección).</summary>
         private void MostrarTicketSeleccionado()
         {
             if (dgvVentas.CurrentRow == null || !dgvVentas.CurrentRow.Selected ||

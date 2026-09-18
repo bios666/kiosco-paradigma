@@ -6,6 +6,7 @@ namespace Kiosco
     /// </summary>
     public partial class FormLoginEmpleado : Form
     {
+        /// <summary>Sistema con todos los datos (empleados, productos y caja). Se recibe por constructor.</summary>
         private readonly Sistema sistema;
 
         /// <summary>Empleado que ingresó correctamente (disponible cuando el resultado es OK).</summary>
@@ -14,6 +15,7 @@ namespace Kiosco
         /// <summary>
         /// Crea el formulario de login del empleado.
         /// </summary>
+        /// <param name="sistema">Sistema con los datos del kiosco (empleados, productos y caja).</param>
         public FormLoginEmpleado(Sistema sistema)
         {
             this.sistema = sistema;
