@@ -59,12 +59,12 @@ namespace Kiosco
             return Empleados.Find(e => e.Dni == dni);
         }
 
-        /// <summary>Busca un producto por código. Devuelve null si no existe.</summary>
+        /// <summary>Busca un producto por código (sin distinguir mayúsculas y minúsculas). Devuelve null si no existe.</summary>
         /// <param name="codigo">Código a buscar.</param>
         /// <returns>El producto encontrado o null.</returns>
         public Producto BuscarProducto(string codigo)
         {
-            return Productos.Find(p => p.Codigo == codigo);
+            return Productos.Find(p => string.Equals(p.Codigo, codigo, StringComparison.OrdinalIgnoreCase));
         }
 
         /// <summary>

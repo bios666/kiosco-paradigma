@@ -14,7 +14,7 @@ namespace Kiosco
         public FormMontoInicial()
         {
             InitializeComponent();
-            Estilo.Aplicar(this);
+            Estilo.Aplicar(this, pantallaCompleta: false);
         }
 
         /// <summary>Valida el monto y cierra con resultado OK.</summary>

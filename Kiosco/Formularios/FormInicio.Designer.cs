@@ -76,7 +76,7 @@ namespace Kiosco
             this.btnAdministrador.Location = new System.Drawing.Point(60, 265);
             this.btnAdministrador.Name = "btnAdministrador";
             this.btnAdministrador.Size = new System.Drawing.Size(300, 48);
-            this.btnAdministrador.Text = "Ingresar como Administrador";
+            this.btnAdministrador.Text = "Administración";
             this.btnAdministrador.Click += new System.EventHandler(this.btnAdministrador_Click);
             //
             // btnEmpleado

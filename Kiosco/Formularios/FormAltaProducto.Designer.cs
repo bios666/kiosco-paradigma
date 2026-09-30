@@ -41,10 +41,18 @@ namespace Kiosco
             this.lblTitulo = new System.Windows.Forms.Label();
             this.lblCodigo = new System.Windows.Forms.Label();
             this.txtCodigo = new System.Windows.Forms.TextBox();
-            this.lblNombre = new System.Windows.Forms.Label();
-            this.txtNombre = new System.Windows.Forms.TextBox();
+            this.lblDescripcion = new System.Windows.Forms.Label();
+            this.txtDescripcion = new System.Windows.Forms.TextBox();
+            this.lblMarca = new System.Windows.Forms.Label();
+            this.cmbMarca = new System.Windows.Forms.ComboBox();
             this.lblCategoria = new System.Windows.Forms.Label();
             this.cmbCategoria = new System.Windows.Forms.ComboBox();
+            this.lblUnidad = new System.Windows.Forms.Label();
+            this.cmbUnidad = new System.Windows.Forms.ComboBox();
+            this.lblCosto = new System.Windows.Forms.Label();
+            this.txtCosto = new System.Windows.Forms.TextBox();
+            this.lblMargen = new System.Windows.Forms.Label();
+            this.txtMargen = new System.Windows.Forms.TextBox();
             this.lblPrecio = new System.Windows.Forms.Label();
             this.txtPrecio = new System.Windows.Forms.TextBox();
             this.lblStock = new System.Windows.Forms.Label();
@@ -70,93 +78,154 @@ namespace Kiosco
             //
             this.lblCodigo.Location = new System.Drawing.Point(30, 70);
             this.lblCodigo.Name = "lblCodigo";
-            this.lblCodigo.Size = new System.Drawing.Size(130, 23);
+            this.lblCodigo.Size = new System.Drawing.Size(170, 23);
             this.lblCodigo.Text = "Código:";
             //
             // txtCodigo
             //
-            this.txtCodigo.Location = new System.Drawing.Point(170, 67);
+            this.txtCodigo.Location = new System.Drawing.Point(205, 67);
             this.txtCodigo.MaxLength = 20;
             this.txtCodigo.Name = "txtCodigo";
-            this.txtCodigo.Size = new System.Drawing.Size(220, 25);
             this.txtCodigo.Tag = "Números";
+            this.txtCodigo.Size = new System.Drawing.Size(185, 25);
             //
-            // lblNombre
+            // lblDescripcion
             //
-            this.lblNombre.Location = new System.Drawing.Point(30, 110);
-            this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(130, 23);
-            this.lblNombre.Text = "Nombre:";
+            this.lblDescripcion.Location = new System.Drawing.Point(30, 110);
+            this.lblDescripcion.Name = "lblDescripcion";
+            this.lblDescripcion.Size = new System.Drawing.Size(170, 23);
+            this.lblDescripcion.Text = "Descripción:";
             //
-            // txtNombre
+            // txtDescripcion
             //
-            this.txtNombre.Location = new System.Drawing.Point(170, 107);
-            this.txtNombre.MaxLength = 40;
-            this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(220, 25);
-            this.txtNombre.Tag = "Texto";
+            this.txtDescripcion.Location = new System.Drawing.Point(205, 107);
+            this.txtDescripcion.MaxLength = 40;
+            this.txtDescripcion.Name = "txtDescripcion";
+            this.txtDescripcion.Tag = "Texto";
+            this.txtDescripcion.Size = new System.Drawing.Size(185, 25);
+            //
+            // lblMarca
+            //
+            this.lblMarca.Location = new System.Drawing.Point(30, 150);
+            this.lblMarca.Name = "lblMarca";
+            this.lblMarca.Size = new System.Drawing.Size(170, 23);
+            this.lblMarca.Text = "Marca:";
+            //
+            // cmbMarca
+            //
+            this.cmbMarca.Location = new System.Drawing.Point(205, 147);
+            this.cmbMarca.MaxLength = 30;
+            this.cmbMarca.Name = "cmbMarca";
+            this.cmbMarca.Tag = "Texto";
+            this.cmbMarca.Size = new System.Drawing.Size(185, 25);
             //
             // lblCategoria
             //
-            this.lblCategoria.Location = new System.Drawing.Point(30, 150);
+            this.lblCategoria.Location = new System.Drawing.Point(30, 190);
             this.lblCategoria.Name = "lblCategoria";
-            this.lblCategoria.Size = new System.Drawing.Size(130, 23);
+            this.lblCategoria.Size = new System.Drawing.Size(170, 23);
             this.lblCategoria.Text = "Categoría:";
             //
             // cmbCategoria
             //
-            this.cmbCategoria.Location = new System.Drawing.Point(170, 147);
+            this.cmbCategoria.Location = new System.Drawing.Point(205, 187);
             this.cmbCategoria.MaxLength = 30;
             this.cmbCategoria.Name = "cmbCategoria";
-            this.cmbCategoria.Size = new System.Drawing.Size(220, 25);
             this.cmbCategoria.Tag = "Texto";
+            this.cmbCategoria.Size = new System.Drawing.Size(185, 25);
+            //
+            // lblUnidad
+            //
+            this.lblUnidad.Location = new System.Drawing.Point(30, 230);
+            this.lblUnidad.Name = "lblUnidad";
+            this.lblUnidad.Size = new System.Drawing.Size(170, 23);
+            this.lblUnidad.Text = "Unidad de medida:";
+            //
+            // cmbUnidad
+            //
+            this.cmbUnidad.Location = new System.Drawing.Point(205, 227);
+            this.cmbUnidad.MaxLength = 15;
+            this.cmbUnidad.Name = "cmbUnidad";
+            this.cmbUnidad.Tag = "Texto";
+            this.cmbUnidad.Size = new System.Drawing.Size(185, 25);
+            //
+            // lblCosto
+            //
+            this.lblCosto.Location = new System.Drawing.Point(30, 270);
+            this.lblCosto.Name = "lblCosto";
+            this.lblCosto.Size = new System.Drawing.Size(170, 23);
+            this.lblCosto.Text = "Costo ($):";
+            //
+            // txtCosto
+            //
+            this.txtCosto.Location = new System.Drawing.Point(205, 267);
+            this.txtCosto.Name = "txtCosto";
+            this.txtCosto.Tag = "Decimal";
+            this.txtCosto.Size = new System.Drawing.Size(185, 25);
+            this.txtCosto.TextChanged += new System.EventHandler(this.CalculoPrecio_Changed);
+            //
+            // lblMargen
+            //
+            this.lblMargen.Location = new System.Drawing.Point(30, 310);
+            this.lblMargen.Name = "lblMargen";
+            this.lblMargen.Size = new System.Drawing.Size(170, 23);
+            this.lblMargen.Text = "Margen de ganancia (%):";
+            //
+            // txtMargen
+            //
+            this.txtMargen.Location = new System.Drawing.Point(205, 307);
+            this.txtMargen.Name = "txtMargen";
+            this.txtMargen.Tag = "Decimal";
+            this.txtMargen.Size = new System.Drawing.Size(185, 25);
+            this.txtMargen.TextChanged += new System.EventHandler(this.CalculoPrecio_Changed);
             //
             // lblPrecio
             //
-            this.lblPrecio.Location = new System.Drawing.Point(30, 190);
+            this.lblPrecio.Location = new System.Drawing.Point(30, 350);
             this.lblPrecio.Name = "lblPrecio";
-            this.lblPrecio.Size = new System.Drawing.Size(130, 23);
-            this.lblPrecio.Text = "Precio ($):";
+            this.lblPrecio.Size = new System.Drawing.Size(170, 23);
+            this.lblPrecio.Text = "Precio de venta ($):";
             //
             // txtPrecio
             //
-            this.txtPrecio.Location = new System.Drawing.Point(170, 187);
+            this.txtPrecio.Location = new System.Drawing.Point(205, 347);
             this.txtPrecio.Name = "txtPrecio";
-            this.txtPrecio.Size = new System.Drawing.Size(220, 25);
-            this.txtPrecio.Tag = "Decimal";
+            this.txtPrecio.ReadOnly = true;
+            this.txtPrecio.TabStop = false;
+            this.txtPrecio.Size = new System.Drawing.Size(185, 25);
             //
             // lblStock
             //
-            this.lblStock.Location = new System.Drawing.Point(30, 230);
+            this.lblStock.Location = new System.Drawing.Point(30, 390);
             this.lblStock.Name = "lblStock";
-            this.lblStock.Size = new System.Drawing.Size(130, 23);
+            this.lblStock.Size = new System.Drawing.Size(170, 23);
             this.lblStock.Text = "Stock:";
             //
             // txtStock
             //
-            this.txtStock.Location = new System.Drawing.Point(170, 227);
+            this.txtStock.Location = new System.Drawing.Point(205, 387);
             this.txtStock.MaxLength = 6;
             this.txtStock.Name = "txtStock";
-            this.txtStock.Size = new System.Drawing.Size(220, 25);
             this.txtStock.Tag = "Números";
+            this.txtStock.Size = new System.Drawing.Size(185, 25);
             //
             // lblProveedor
             //
-            this.lblProveedor.Location = new System.Drawing.Point(30, 270);
+            this.lblProveedor.Location = new System.Drawing.Point(30, 430);
             this.lblProveedor.Name = "lblProveedor";
-            this.lblProveedor.Size = new System.Drawing.Size(130, 23);
+            this.lblProveedor.Size = new System.Drawing.Size(170, 23);
             this.lblProveedor.Text = "Proveedor (opcional):";
             //
             // txtProveedor
             //
-            this.txtProveedor.Location = new System.Drawing.Point(170, 267);
+            this.txtProveedor.Location = new System.Drawing.Point(205, 427);
             this.txtProveedor.MaxLength = 40;
             this.txtProveedor.Name = "txtProveedor";
-            this.txtProveedor.Size = new System.Drawing.Size(220, 25);
+            this.txtProveedor.Size = new System.Drawing.Size(185, 25);
             //
             // btnGuardar
             //
-            this.btnGuardar.Location = new System.Drawing.Point(30, 320);
+            this.btnGuardar.Location = new System.Drawing.Point(30, 480);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(175, 40);
             this.btnGuardar.Text = "Guardar";
@@ -164,7 +233,7 @@ namespace Kiosco
             //
             // btnCancelar
             //
-            this.btnCancelar.Location = new System.Drawing.Point(215, 320);
+            this.btnCancelar.Location = new System.Drawing.Point(215, 480);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(175, 40);
             this.btnCancelar.Text = "Cancelar";
@@ -179,14 +248,22 @@ namespace Kiosco
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(420, 385);
+            this.ClientSize = new System.Drawing.Size(420, 545);
             this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.lblCodigo);
             this.Controls.Add(this.txtCodigo);
-            this.Controls.Add(this.lblNombre);
-            this.Controls.Add(this.txtNombre);
+            this.Controls.Add(this.lblDescripcion);
+            this.Controls.Add(this.txtDescripcion);
+            this.Controls.Add(this.lblMarca);
+            this.Controls.Add(this.cmbMarca);
             this.Controls.Add(this.lblCategoria);
             this.Controls.Add(this.cmbCategoria);
+            this.Controls.Add(this.lblUnidad);
+            this.Controls.Add(this.cmbUnidad);
+            this.Controls.Add(this.lblCosto);
+            this.Controls.Add(this.txtCosto);
+            this.Controls.Add(this.lblMargen);
+            this.Controls.Add(this.txtMargen);
             this.Controls.Add(this.lblPrecio);
             this.Controls.Add(this.txtPrecio);
             this.Controls.Add(this.lblStock);
@@ -210,10 +287,18 @@ namespace Kiosco
         private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Label lblCodigo;
         private System.Windows.Forms.TextBox txtCodigo;
-        private System.Windows.Forms.Label lblNombre;
-        private System.Windows.Forms.TextBox txtNombre;
+        private System.Windows.Forms.Label lblDescripcion;
+        private System.Windows.Forms.TextBox txtDescripcion;
+        private System.Windows.Forms.Label lblMarca;
+        private System.Windows.Forms.ComboBox cmbMarca;
         private System.Windows.Forms.Label lblCategoria;
         private System.Windows.Forms.ComboBox cmbCategoria;
+        private System.Windows.Forms.Label lblUnidad;
+        private System.Windows.Forms.ComboBox cmbUnidad;
+        private System.Windows.Forms.Label lblCosto;
+        private System.Windows.Forms.TextBox txtCosto;
+        private System.Windows.Forms.Label lblMargen;
+        private System.Windows.Forms.TextBox txtMargen;
         private System.Windows.Forms.Label lblPrecio;
         private System.Windows.Forms.TextBox txtPrecio;
         private System.Windows.Forms.Label lblStock;

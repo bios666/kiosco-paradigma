@@ -37,10 +37,10 @@ namespace Kiosco
 
         /// <summary>Verifica la contraseña ingresada.</summary>
         /// <param name="contrasena">Texto que escribió el usuario.</param>
-        /// <returns>true si coincide exactamente con la contraseña del empleado.</returns>
+        /// <returns>true si coincide con la contraseña del empleado (sin distinguir mayúsculas y minúsculas).</returns>
         public bool ValidarContrasena(string contrasena)
         {
-            return Contrasena == contrasena;
+            return string.Equals(Contrasena, contrasena, StringComparison.OrdinalIgnoreCase);
         }
 
         /// <summary>

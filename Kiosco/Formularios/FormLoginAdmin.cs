@@ -16,7 +16,7 @@ namespace Kiosco
         {
             this.sistema = sistema;
             InitializeComponent();
-            Estilo.Aplicar(this);
+            Estilo.Aplicar(this, pantallaCompleta: false);
         }
 
         /// <summary>Valida el campo y, si la contraseña es correcta, cierra con resultado OK.</summary>

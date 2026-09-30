@@ -1,8 +1,8 @@
 namespace Kiosco
 {
     /// <summary>
-    /// Panel principal del administrador: acceso al ABM de empleados y productos,
-    /// promociones y reportes.
+    /// Panel principal de Administración: acceso al ABM de empleados y productos
+    /// (desde Productos se llega a precios y promociones) y a los reportes.
     /// </summary>
     public partial class FormPanelAdmin : Form
     {
@@ -18,14 +18,7 @@ namespace Kiosco
             this.sistema = sistema;
             InitializeComponent();
             Estilo.Aplicar(this);
-            ActualizarResumen();
-        }
-
-        /// <summary>Muestra un resumen rápido del estado del sistema.</summary>
-        private void ActualizarResumen()
-        {
-            lblResumen.Text = $"Empleados: {sistema.Empleados.Count}   |   Productos: {sistema.Productos.Count}\n" +
-                              $"Caja: {(sistema.Caja.Abierta ? "abierta" : "cerrada")}";
+            Estilo.CentrarContenido(this);
         }
 
         /// <summary>Abre un formulario hijo ocultando este panel mientras tanto.</summary>
@@ -36,7 +29,6 @@ namespace Kiosco
             {
                 formulario.ShowDialog();
             }
-            ActualizarResumen();
             Show();
         }
 
@@ -50,12 +42,6 @@ namespace Kiosco
         private void btnProductos_Click(object sender, EventArgs e)
         {
             AbrirFormulario(new FormProductos(sistema));
-        }
-
-        /// <summary>Abre la configuración de precios y promociones.</summary>
-        private void btnPromociones_Click(object sender, EventArgs e)
-        {
-            AbrirFormulario(new FormPromociones(sistema));
         }
 
         /// <summary>Abre los reportes y el cierre de caja.</summary>

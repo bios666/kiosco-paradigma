@@ -117,6 +117,7 @@ namespace Kiosco
             this.tabReportes.Controls.Add(this.tabHistorial);
             this.tabReportes.Controls.Add(this.tabEmpleados);
             this.tabReportes.Controls.Add(this.tabCaja);
+            this.tabReportes.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             this.tabReportes.Location = new System.Drawing.Point(20, 60);
             this.tabReportes.Name = "tabReportes";
             this.tabReportes.SelectedIndex = 0;
@@ -133,6 +134,7 @@ namespace Kiosco
             //
             // dgvVentas
             //
+            this.dgvVentas.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             this.dgvVentas.Location = new System.Drawing.Point(10, 10);
             this.dgvVentas.Name = "dgvVentas";
             this.dgvVentas.Size = new System.Drawing.Size(836, 320);
@@ -141,6 +143,7 @@ namespace Kiosco
             // lblTotalVentas
             //
             this.lblTotalVentas.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.lblTotalVentas.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             this.lblTotalVentas.Location = new System.Drawing.Point(10, 345);
             this.lblTotalVentas.Name = "lblTotalVentas";
             this.lblTotalVentas.Size = new System.Drawing.Size(600, 30);
@@ -148,6 +151,7 @@ namespace Kiosco
             //
             // btnVerTicket
             //
+            this.btnVerTicket.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
             this.btnVerTicket.Location = new System.Drawing.Point(676, 342);
             this.btnVerTicket.Name = "btnVerTicket";
             this.btnVerTicket.Size = new System.Drawing.Size(170, 36);
@@ -164,6 +168,7 @@ namespace Kiosco
             //
             // dgvPorEmpleado
             //
+            this.dgvPorEmpleado.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             this.dgvPorEmpleado.Location = new System.Drawing.Point(10, 10);
             this.dgvPorEmpleado.Name = "dgvPorEmpleado";
             this.dgvPorEmpleado.Size = new System.Drawing.Size(836, 320);
@@ -171,6 +176,7 @@ namespace Kiosco
             // lblTotalSueldos
             //
             this.lblTotalSueldos.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.lblTotalSueldos.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             this.lblTotalSueldos.Location = new System.Drawing.Point(10, 345);
             this.lblTotalSueldos.Name = "lblTotalSueldos";
             this.lblTotalSueldos.Size = new System.Drawing.Size(836, 30);
@@ -194,6 +200,7 @@ namespace Kiosco
             //
             // btnCierreCaja
             //
+            this.btnCierreCaja.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             this.btnCierreCaja.Location = new System.Drawing.Point(646, 15);
             this.btnCierreCaja.Name = "btnCierreCaja";
             this.btnCierreCaja.Size = new System.Drawing.Size(200, 45);
@@ -210,12 +217,14 @@ namespace Kiosco
             //
             // dgvCierres
             //
+            this.dgvCierres.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             this.dgvCierres.Location = new System.Drawing.Point(10, 148);
             this.dgvCierres.Name = "dgvCierres";
             this.dgvCierres.Size = new System.Drawing.Size(836, 240);
             //
             // btnCerrar
             //
+            this.btnCerrar.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
             this.btnCerrar.Location = new System.Drawing.Point(730, 500);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(150, 40);

@@ -75,6 +75,7 @@ namespace Kiosco
             //
             // dgvVentas
             //
+            this.dgvVentas.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             this.dgvVentas.Location = new System.Drawing.Point(20, 60);
             this.dgvVentas.Name = "dgvVentas";
             this.dgvVentas.Size = new System.Drawing.Size(640, 300);
@@ -83,6 +84,7 @@ namespace Kiosco
             // lblTotal
             //
             this.lblTotal.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.lblTotal.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             this.lblTotal.Location = new System.Drawing.Point(20, 372);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(640, 30);
@@ -90,6 +92,7 @@ namespace Kiosco
             //
             // btnVerTicket
             //
+            this.btnVerTicket.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             this.btnVerTicket.Location = new System.Drawing.Point(20, 415);
             this.btnVerTicket.Name = "btnVerTicket";
             this.btnVerTicket.Size = new System.Drawing.Size(170, 40);
@@ -98,6 +101,7 @@ namespace Kiosco
             //
             // btnCerrar
             //
+            this.btnCerrar.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
             this.btnCerrar.Location = new System.Drawing.Point(510, 415);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(150, 40);

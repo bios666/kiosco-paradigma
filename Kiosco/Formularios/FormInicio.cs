@@ -17,6 +17,7 @@ namespace Kiosco
             this.sistema = sistema;
             InitializeComponent();
             Estilo.Aplicar(this);
+            Estilo.CentrarContenido(this);
             picLogo.Image = Estilo.CargarLogo();
         }
 
@@ -45,7 +46,7 @@ namespace Kiosco
             if (sistema.Empleados.Count == 0)
             {
                 MessageBox.Show(
-                    "Todavía no hay empleados registrados.\nIngrese como Administrador para darlos de alta.",
+                    "Todavía no hay empleados registrados.\nIngrese a Administración para darlos de alta.",
                     "Sin empleados", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }

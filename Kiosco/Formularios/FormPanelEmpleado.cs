@@ -21,6 +21,7 @@ namespace Kiosco
             this.empleado = empleado;
             InitializeComponent();
             Estilo.Aplicar(this);
+            Estilo.CentrarContenido(this);
             lblTitulo.Text = $"Hola, {empleado.Nombres}";
             ActualizarEstado();
         }
