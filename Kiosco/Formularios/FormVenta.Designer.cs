@@ -77,6 +77,7 @@ namespace Kiosco
             //
             // txtBuscar
             //
+            this.txtBuscar.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             this.txtBuscar.Location = new System.Drawing.Point(95, 59);
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(445, 25);
@@ -84,6 +85,7 @@ namespace Kiosco
             //
             // dgvProductos
             //
+            this.dgvProductos.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             this.dgvProductos.Location = new System.Drawing.Point(20, 95);
             this.dgvProductos.Name = "dgvProductos";
             this.dgvProductos.Size = new System.Drawing.Size(520, 360);
@@ -91,6 +93,7 @@ namespace Kiosco
             //
             // lblCantidad
             //
+            this.lblCantidad.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             this.lblCantidad.Location = new System.Drawing.Point(20, 475);
             this.lblCantidad.Name = "lblCantidad";
             this.lblCantidad.Size = new System.Drawing.Size(80, 23);
@@ -98,6 +101,7 @@ namespace Kiosco
             //
             // nudCantidad
             //
+            this.nudCantidad.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             this.nudCantidad.Location = new System.Drawing.Point(105, 472);
             this.nudCantidad.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
             this.nudCantidad.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
@@ -107,6 +111,7 @@ namespace Kiosco
             //
             // btnAgregar
             //
+            this.btnAgregar.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             this.btnAgregar.Location = new System.Drawing.Point(300, 465);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(240, 40);
@@ -116,6 +121,7 @@ namespace Kiosco
             // lblCarrito
             //
             this.lblCarrito.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.lblCarrito.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             this.lblCarrito.Location = new System.Drawing.Point(565, 62);
             this.lblCarrito.Name = "lblCarrito";
             this.lblCarrito.Size = new System.Drawing.Size(415, 25);
@@ -123,12 +129,14 @@ namespace Kiosco
             //
             // dgvCarrito
             //
+            this.dgvCarrito.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
             this.dgvCarrito.Location = new System.Drawing.Point(565, 95);
             this.dgvCarrito.Name = "dgvCarrito";
             this.dgvCarrito.Size = new System.Drawing.Size(415, 290);
             //
             // btnQuitar
             //
+            this.btnQuitar.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
             this.btnQuitar.Location = new System.Drawing.Point(565, 395);
             this.btnQuitar.Name = "btnQuitar";
             this.btnQuitar.Size = new System.Drawing.Size(140, 36);
@@ -138,6 +146,7 @@ namespace Kiosco
             // lblTotal
             //
             this.lblTotal.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
+            this.lblTotal.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
             this.lblTotal.Location = new System.Drawing.Point(715, 392);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(265, 40);
@@ -146,6 +155,7 @@ namespace Kiosco
             //
             // lblMedioPago
             //
+            this.lblMedioPago.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
             this.lblMedioPago.Location = new System.Drawing.Point(565, 450);
             this.lblMedioPago.Name = "lblMedioPago";
             this.lblMedioPago.Size = new System.Drawing.Size(110, 23);
@@ -154,6 +164,7 @@ namespace Kiosco
             // cmbMedioPago
             //
             this.cmbMedioPago.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMedioPago.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
             this.cmbMedioPago.Location = new System.Drawing.Point(680, 447);
             this.cmbMedioPago.Name = "cmbMedioPago";
             this.cmbMedioPago.Size = new System.Drawing.Size(180, 25);
@@ -161,6 +172,7 @@ namespace Kiosco
             //
             // btnConfirmar
             //
+            this.btnConfirmar.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
             this.btnConfirmar.Location = new System.Drawing.Point(565, 490);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(250, 50);
@@ -169,6 +181,7 @@ namespace Kiosco
             //
             // btnCancelar
             //
+            this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
             this.btnCancelar.Location = new System.Drawing.Point(830, 490);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(150, 50);

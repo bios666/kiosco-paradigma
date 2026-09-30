@@ -58,6 +58,7 @@ namespace Kiosco
             //
             // dgvEmpleados
             //
+            this.dgvEmpleados.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             this.dgvEmpleados.Location = new System.Drawing.Point(20, 60);
             this.dgvEmpleados.Name = "dgvEmpleados";
             this.dgvEmpleados.Size = new System.Drawing.Size(560, 360);
@@ -65,6 +66,7 @@ namespace Kiosco
             //
             // lblFicha
             //
+            this.lblFicha.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             this.lblFicha.Location = new System.Drawing.Point(600, 60);
             this.lblFicha.Name = "lblFicha";
             this.lblFicha.Size = new System.Drawing.Size(280, 23);
@@ -73,6 +75,7 @@ namespace Kiosco
             // txtFicha
             //
             this.txtFicha.BackColor = System.Drawing.Color.White;
+            this.txtFicha.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
             this.txtFicha.Location = new System.Drawing.Point(600, 86);
             this.txtFicha.Multiline = true;
             this.txtFicha.Name = "txtFicha";
@@ -82,6 +85,7 @@ namespace Kiosco
             //
             // btnAlta
             //
+            this.btnAlta.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             this.btnAlta.Location = new System.Drawing.Point(20, 440);
             this.btnAlta.Name = "btnAlta";
             this.btnAlta.Size = new System.Drawing.Size(150, 40);
@@ -90,6 +94,7 @@ namespace Kiosco
             //
             // btnBaja
             //
+            this.btnBaja.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             this.btnBaja.Location = new System.Drawing.Point(180, 440);
             this.btnBaja.Name = "btnBaja";
             this.btnBaja.Size = new System.Drawing.Size(150, 40);
@@ -98,6 +103,7 @@ namespace Kiosco
             //
             // btnAsistencia
             //
+            this.btnAsistencia.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             this.btnAsistencia.Location = new System.Drawing.Point(340, 440);
             this.btnAsistencia.Name = "btnAsistencia";
             this.btnAsistencia.Size = new System.Drawing.Size(240, 40);
@@ -106,6 +112,7 @@ namespace Kiosco
             //
             // btnCerrar
             //
+            this.btnCerrar.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
             this.btnCerrar.Location = new System.Drawing.Point(730, 440);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(150, 40);

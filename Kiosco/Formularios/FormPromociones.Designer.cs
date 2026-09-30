@@ -1,6 +1,6 @@
 // ============================================================================
 // FormPromociones.Designer.cs
-// Parte "diseño" del formulario FormPromociones: promociones por producto y ajuste de precios por categoría.
+// Parte "diseño" del formulario FormPromociones: promociones por producto y ajuste de precio por marca.
 //
 // Este archivo lo genera y mantiene el Diseñador de Windows Forms de Visual Studio:
 // define qué controles tiene la pantalla (posición, tamaño, texto y eventos).
@@ -38,15 +38,17 @@ namespace Kiosco
         private void InitializeComponent()
         {
             this.lblTitulo = new System.Windows.Forms.Label();
+            this.lblBuscar = new System.Windows.Forms.Label();
+            this.txtBuscar = new System.Windows.Forms.TextBox();
             this.dgvProductos = new System.Windows.Forms.DataGridView();
             this.grpPromocion = new System.Windows.Forms.GroupBox();
             this.lblPromo = new System.Windows.Forms.Label();
             this.nudPromocion = new System.Windows.Forms.NumericUpDown();
             this.btnAplicarPromocion = new System.Windows.Forms.Button();
             this.btnQuitarPromociones = new System.Windows.Forms.Button();
-            this.grpCategoria = new System.Windows.Forms.GroupBox();
-            this.lblCategoria = new System.Windows.Forms.Label();
-            this.cmbCategoria = new System.Windows.Forms.ComboBox();
+            this.grpMarca = new System.Windows.Forms.GroupBox();
+            this.lblMarca = new System.Windows.Forms.Label();
+            this.cmbMarca = new System.Windows.Forms.ComboBox();
             this.lblAjuste = new System.Windows.Forms.Label();
             this.nudAjuste = new System.Windows.Forms.NumericUpDown();
             this.btnAplicarAjuste = new System.Windows.Forms.Button();
@@ -55,7 +57,7 @@ namespace Kiosco
             ((System.ComponentModel.ISupportInitialize)(this.nudPromocion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAjuste)).BeginInit();
             this.grpPromocion.SuspendLayout();
-            this.grpCategoria.SuspendLayout();
+            this.grpMarca.SuspendLayout();
             this.SuspendLayout();
             //
             // lblTitulo
@@ -66,8 +68,27 @@ namespace Kiosco
             this.lblTitulo.Size = new System.Drawing.Size(500, 40);
             this.lblTitulo.Text = "Precios y promociones";
             //
+            // lblBuscar
+            //
+            this.lblBuscar.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            this.lblBuscar.Location = new System.Drawing.Point(560, 20);
+            this.lblBuscar.Name = "lblBuscar";
+            this.lblBuscar.Size = new System.Drawing.Size(70, 23);
+            this.lblBuscar.Text = "Buscar:";
+            this.lblBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            //
+            // txtBuscar
+            //
+            this.txtBuscar.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            this.txtBuscar.Location = new System.Drawing.Point(636, 20);
+            this.txtBuscar.Name = "txtBuscar";
+            this.txtBuscar.Size = new System.Drawing.Size(244, 25);
+            this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
+            //
             // dgvProductos
             //
+            this.dgvProductos.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom
+                | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             this.dgvProductos.Location = new System.Drawing.Point(20, 60);
             this.dgvProductos.Name = "dgvProductos";
             this.dgvProductos.Size = new System.Drawing.Size(560, 420);
@@ -79,6 +100,7 @@ namespace Kiosco
             this.grpPromocion.Controls.Add(this.nudPromocion);
             this.grpPromocion.Controls.Add(this.btnAplicarPromocion);
             this.grpPromocion.Controls.Add(this.btnQuitarPromociones);
+            this.grpPromocion.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             this.grpPromocion.Location = new System.Drawing.Point(600, 60);
             this.grpPromocion.Name = "grpPromocion";
             this.grpPromocion.Size = new System.Drawing.Size(280, 190);
@@ -114,31 +136,32 @@ namespace Kiosco
             this.btnQuitarPromociones.Text = "Quitar todas las promociones";
             this.btnQuitarPromociones.Click += new System.EventHandler(this.btnQuitarPromociones_Click);
             //
-            // grpCategoria
+            // grpMarca
             //
-            this.grpCategoria.Controls.Add(this.lblCategoria);
-            this.grpCategoria.Controls.Add(this.cmbCategoria);
-            this.grpCategoria.Controls.Add(this.lblAjuste);
-            this.grpCategoria.Controls.Add(this.nudAjuste);
-            this.grpCategoria.Controls.Add(this.btnAplicarAjuste);
-            this.grpCategoria.Location = new System.Drawing.Point(600, 265);
-            this.grpCategoria.Name = "grpCategoria";
-            this.grpCategoria.Size = new System.Drawing.Size(280, 165);
-            this.grpCategoria.Text = "Ajuste de precios por categoría";
+            this.grpMarca.Controls.Add(this.lblMarca);
+            this.grpMarca.Controls.Add(this.cmbMarca);
+            this.grpMarca.Controls.Add(this.lblAjuste);
+            this.grpMarca.Controls.Add(this.nudAjuste);
+            this.grpMarca.Controls.Add(this.btnAplicarAjuste);
+            this.grpMarca.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            this.grpMarca.Location = new System.Drawing.Point(600, 265);
+            this.grpMarca.Name = "grpMarca";
+            this.grpMarca.Size = new System.Drawing.Size(280, 165);
+            this.grpMarca.Text = "Ajuste de precio por Marca";
             //
-            // lblCategoria
+            // lblMarca
             //
-            this.lblCategoria.Location = new System.Drawing.Point(15, 30);
-            this.lblCategoria.Name = "lblCategoria";
-            this.lblCategoria.Size = new System.Drawing.Size(80, 23);
-            this.lblCategoria.Text = "Categoría:";
+            this.lblMarca.Location = new System.Drawing.Point(15, 30);
+            this.lblMarca.Name = "lblMarca";
+            this.lblMarca.Size = new System.Drawing.Size(80, 23);
+            this.lblMarca.Text = "Marca:";
             //
-            // cmbCategoria
+            // cmbMarca
             //
-            this.cmbCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbCategoria.Location = new System.Drawing.Point(100, 27);
-            this.cmbCategoria.Name = "cmbCategoria";
-            this.cmbCategoria.Size = new System.Drawing.Size(160, 25);
+            this.cmbMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMarca.Location = new System.Drawing.Point(100, 27);
+            this.cmbMarca.Name = "cmbMarca";
+            this.cmbMarca.Size = new System.Drawing.Size(160, 25);
             //
             // lblAjuste
             //
@@ -160,11 +183,12 @@ namespace Kiosco
             this.btnAplicarAjuste.Location = new System.Drawing.Point(15, 105);
             this.btnAplicarAjuste.Name = "btnAplicarAjuste";
             this.btnAplicarAjuste.Size = new System.Drawing.Size(245, 40);
-            this.btnAplicarAjuste.Text = "Aplicar ajuste a la categoría";
+            this.btnAplicarAjuste.Text = "Aplicar ajuste a la Marca";
             this.btnAplicarAjuste.Click += new System.EventHandler(this.btnAplicarAjuste_Click);
             //
             // btnCerrar
             //
+            this.btnCerrar.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
             this.btnCerrar.Location = new System.Drawing.Point(730, 440);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(150, 40);
@@ -178,9 +202,11 @@ namespace Kiosco
             this.CancelButton = this.btnCerrar;
             this.ClientSize = new System.Drawing.Size(900, 500);
             this.Controls.Add(this.lblTitulo);
+            this.Controls.Add(this.lblBuscar);
+            this.Controls.Add(this.txtBuscar);
             this.Controls.Add(this.dgvProductos);
             this.Controls.Add(this.grpPromocion);
-            this.Controls.Add(this.grpCategoria);
+            this.Controls.Add(this.grpMarca);
             this.Controls.Add(this.btnCerrar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -192,22 +218,25 @@ namespace Kiosco
             ((System.ComponentModel.ISupportInitialize)(this.nudPromocion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAjuste)).EndInit();
             this.grpPromocion.ResumeLayout(false);
-            this.grpCategoria.ResumeLayout(false);
+            this.grpMarca.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
         }
 
         #endregion
 
         private System.Windows.Forms.Label lblTitulo;
+        private System.Windows.Forms.Label lblBuscar;
+        private System.Windows.Forms.TextBox txtBuscar;
         private System.Windows.Forms.DataGridView dgvProductos;
         private System.Windows.Forms.GroupBox grpPromocion;
         private System.Windows.Forms.Label lblPromo;
         private System.Windows.Forms.NumericUpDown nudPromocion;
         private System.Windows.Forms.Button btnAplicarPromocion;
         private System.Windows.Forms.Button btnQuitarPromociones;
-        private System.Windows.Forms.GroupBox grpCategoria;
-        private System.Windows.Forms.Label lblCategoria;
-        private System.Windows.Forms.ComboBox cmbCategoria;
+        private System.Windows.Forms.GroupBox grpMarca;
+        private System.Windows.Forms.Label lblMarca;
+        private System.Windows.Forms.ComboBox cmbMarca;
         private System.Windows.Forms.Label lblAjuste;
         private System.Windows.Forms.NumericUpDown nudAjuste;
         private System.Windows.Forms.Button btnAplicarAjuste;

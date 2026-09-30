@@ -14,14 +14,68 @@ namespace Kiosco
 
         /// <summary>
         /// Aplica el estilo común a un formulario y a todos sus controles.
+        /// Todas las ventanas se pueden minimizar; las pantallas principales además se abren
+        /// en pantalla completa (maximizadas) y se pueden restaurar y volver a expandir.
         /// </summary>
         /// <param name="formulario">Formulario a estilizar. Se llama justo después de InitializeComponent().</param>
-        public static void Aplicar(Form formulario)
+        /// <param name="pantallaCompleta">
+        /// true (por defecto) para pantallas principales; false para diálogos chicos
+        /// (logins, altas, monto inicial) que mantienen su tamaño fijo.
+        /// </param>
+        public static void Aplicar(Form formulario, bool pantallaCompleta = true)
         {
             formulario.BackColor = ColorFondo;
             formulario.Font = new Font("Segoe UI", 10F);
             formulario.StartPosition = FormStartPosition.CenterScreen;
+            // Con el padre oculto, la barra de tareas es la única forma de volver a una ventana minimizada.
+            formulario.MinimizeBox = true;
+            formulario.ShowInTaskbar = true;
+
+            if (pantallaCompleta)
+            {
+                formulario.FormBorderStyle = FormBorderStyle.Sizable;
+                formulario.MaximizeBox = true;
+                // Al restaurar no se puede achicar por debajo del tamaño de diseño (los controles no entrarían).
+                formulario.MinimumSize = formulario.Size;
+                formulario.WindowState = FormWindowState.Maximized;
+            }
+
             AplicarControles(formulario);
+        }
+
+        /// <summary>
+        /// Mantiene todos los controles del formulario centrados como un bloque cuando la ventana
+        /// cambia de tamaño. Se usa en las pantallas de menú (inicio y paneles), que tienen
+        /// pocos botones y quedarían pegados a la esquina al maximizar.
+        /// </summary>
+        /// <param name="formulario">Formulario cuyos controles se centran.</param>
+        public static void CentrarContenido(Form formulario)
+        {
+            formulario.Load += (s, e) => Centrar(formulario);
+            formulario.Resize += (s, e) => Centrar(formulario);
+        }
+
+        /// <summary>
+        /// Mueve todos los controles juntos para que el rectángulo que los contiene quede en el centro.
+        /// Se calcula a partir de las posiciones actuales, así que se puede llamar las veces que haga falta.
+        /// </summary>
+        /// <param name="formulario">Formulario cuyos controles se mueven.</param>
+        private static void Centrar(Form formulario)
+        {
+            if (formulario.Controls.Count == 0 || formulario.WindowState == FormWindowState.Minimized) return;
+
+            Rectangle bloque = formulario.Controls[0].Bounds;
+            foreach (Control control in formulario.Controls)
+                bloque = Rectangle.Union(bloque, control.Bounds);
+
+            int dx = (formulario.ClientSize.Width - bloque.Width) / 2 - bloque.Left;
+            int dy = (formulario.ClientSize.Height - bloque.Height) / 2 - bloque.Top;
+            if (dx == 0 && dy == 0) return;
+
+            formulario.SuspendLayout();
+            foreach (Control control in formulario.Controls)
+                control.Location = new Point(control.Left + dx, control.Top + dy);
+            formulario.ResumeLayout();
         }
 
         /// <summary>

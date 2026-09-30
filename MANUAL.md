@@ -39,7 +39,7 @@ Kiosco es un programa de escritorio para llevar la gestión diaria de un kiosco:
 
 - **Personas**: un administrador y varios empleados, cada uno con su contraseña.
 - **Productos**: alta, edición de precio y stock, baja, búsqueda, promociones.
-- **Ventas**: el empleado arma un carrito, elige el medio de pago (efectivo o tarjeta) y
+- **Ventas**: el empleado arma un carrito, elige el medio de pago (efectivo,transferencia,qr,debito) y
   confirma. Se descuenta el stock y se genera un ticket en un archivo de texto.
 - **Caja**: se abre con un monto inicial y se cierra al final del turno, con un resumen.
 - **Asistencia y sueldos**: se marca la asistencia de cada empleado y se calcula cuánto
@@ -69,17 +69,22 @@ También se puede abrir `Kiosco.sln` en Visual Studio y ejecutar con **F5**.
 
 ### 3.1 Pantalla inicial e ingreso
 
-Al abrir el programa aparece la pantalla **Kiosco** con tres botones:
+Al abrir el programa aparece la pantalla **Kiosco** con tres botones. El programa arranca en
+**pantalla completa**; todas las ventanas se pueden **minimizar**, y las pantallas principales también
+**restaurar** y volver a **expandir** (los controles se reacomodan al tamaño de la ventana).
 
 | Botón | Qué hace |
 |---|---|
-| **Ingresar como Administrador** | Abre el login del administrador. |
-| **Ingresar como Empleado** | Abre el login del empleado. Si todavía no hay empleados, avisa: *"Todavía no hay empleados registrados. Ingrese como Administrador para darlos de alta."* |
+| **Administración** | Abre el login de Administración. |
+| **Ingresar como Empleado** | Abre el login del empleado. Si todavía no hay empleados, avisa: *"Todavía no hay empleados registrados. Ingrese a Administración para darlos de alta."* |
 | **Salir** | Cierra el programa. |
 
 **Login del administrador.** Se escribe la contraseña y se toca **Ingresar**. La contraseña por
 defecto es **`123123`**. Si es incorrecta aparece *"Contraseña incorrecta."*. **Volver** regresa a la
 pantalla inicial.
+
+> **Mayúsculas y minúsculas:** el programa no las distingue. Las contraseñas, el código de producto,
+> las búsquedas y los filtros aceptan el texto escrito de cualquier forma (`Clave1` = `clave1`).
 
 **Login del empleado.** Se elige el empleado en la lista desplegable (ordenados por apellido) y se
 escribe su contraseña. Al ingresar correctamente **se marca automáticamente su asistencia del día**
@@ -88,8 +93,8 @@ mostrar el aviso y no se duplica.
 
 ### 3.2 Como administrador
 
-El **Panel de Administrador** muestra un resumen (cantidad de empleados, de productos y si la caja está
-abierta o cerrada) y cinco botones.
+El **Panel de Administración** tiene cuatro botones: **Empleados**, **Productos** (desde ahí se llega a
+**Precios y promociones**), **Reportes y cierre de caja** y **Cerrar sesión**.
 
 #### Empleados
 
@@ -112,30 +117,45 @@ contraseña y sueldo por día. Las reglas están en la [sección 5](#5-validacio
 
 #### Productos
 
-Lista con código, nombre, categoría, precio, porcentaje de promoción, precio final, stock y proveedor.
-Hay un cuadro **Buscar** que filtra mientras se escribe (por nombre, código o categoría). Las filas de
-productos con **5 unidades o menos** se muestran en **rojo**.
+Lista con código, descripción, marca, categoría, unidad de medida, precio, precio final, stock y
+proveedor. Hay un cuadro **Buscar** que filtra mientras se escribe (por descripción, código, marca o
+categoría) y tres filtros desplegables: **Proveedor**, **Categoría** y **Promo** (Todos / Con promo /
+Sin promo). Los filtros se combinan entre sí. Las filas de productos con **10 unidades o menos** se
+muestran con el texto en **rojo** (*"Las filas en rojo tienen bajo stock (10 unidades o menos)."*).
 
 | Botón | Qué hace |
 |---|---|
-| **Nuevo producto** | Alta: código, nombre, categoría, precio, stock y proveedor (opcional). |
-| **Editar / stock** | Abre el mismo formulario con los datos cargados. Se puede cambiar todo **menos el código**. Sirve para actualizar precio y stock. |
-| **Dar de baja** | Pide confirmación y elimina el producto. Las ventas ya hechas conservan sus datos. |
+| **Nuevo producto** | Abre el **Alta de producto** (ver abajo). |
+| **Editar Producto** | Abre el mismo formulario con los datos cargados. Se puede cambiar todo **menos el código**. Sirve para actualizar costo, margen y stock. |
+| **Dar de baja Producto** | Pide confirmación y elimina el producto. Las ventas ya hechas conservan sus datos. |
+| **Precios y promociones** | Abre la pantalla de precios y promociones (ver abajo). Al volver, el listado se actualiza. |
 | **Volver** | Regresa al panel. |
 
-La categoría es un combo **editable**: ofrece Golosinas, Bebidas, Snacks, Cigarrillos, Lácteos,
-Panificados, Limpieza y Otros (más las que ya usen tus productos), pero se puede escribir una nueva.
+**Alta de producto.** Campos: código, **descripción**, **marca**, categoría, **unidad de medida**,
+**costo**, **margen de ganancia (%)**, stock y proveedor (opcional). El **precio de venta** no se
+escribe: se calcula automáticamente mientras se tipea, como *costo × (1 + margen / 100)* (por ejemplo,
+costo $1000 y margen 30 % → precio $1300).
+
+Categoría, marca y unidad de medida son combos **editables**: ofrecen valores sugeridos (categorías:
+Golosinas, Bebidas, Snacks, Cigarrillos, Lácteos, Panificados, Limpieza y Otros; unidades: Unidad, g,
+kg, ml, l, cc y Paquete) más los que ya usen tus productos, pero se puede escribir uno nuevo.
+
+Los productos cargados con una versión anterior del programa no tienen costo ni margen: al editarlos se
+muestra su precio actual y hay que completar el costo (y el margen) para poder guardar.
 
 #### Precios y promociones
 
-Lista de productos y dos herramientas:
+Se abre desde **Productos › Precios y promociones**. Lista de productos (código, descripción, marca,
+precio, promoción y precio final) con un cuadro **Buscar** (por código, descripción o marca) y dos
+herramientas:
 
 - **Promoción del producto seleccionado:** un descuento de **0 a 90 %**. Con **Aplicar promoción** el
   producto pasa a cobrarse a su *precio final* (precio de lista menos el descuento). Los productos con
   promoción se resaltan en amarillo. **Quitar todas las promociones** las elimina de todos los productos.
-- **Ajuste de precios por categoría:** elige una categoría y un porcentaje de **−50 a +200 %**. **Aplicar
-  ajuste a la categoría** modifica el *precio de lista* de todos los productos de esa categoría, previa
-  confirmación que indica cuántos se ven afectados.
+- **Ajuste de precio por Marca:** elige una marca y un porcentaje de **−50 a +200 %**. **Aplicar
+  ajuste a la Marca** modifica el precio de todos los productos de esa marca, previa confirmación que
+  indica cuántos se ven afectados. Si el producto tiene costo cargado, se ajusta el costo y el precio se
+  recalcula con el mismo margen; si no, se ajusta directamente el precio de lista.
 
 #### Reportes y cierre de caja
 
@@ -187,18 +207,19 @@ la cantidad y el total, y permite **Ver ticket** de cada una.
 
 ### 3.4 Recorrido completo de ejemplo
 
-1. Ingresar como **Administrador** (`123123`).
+1. Ingresar a **Administración** (`123123`).
 2. **Empleados › Nuevo empleado:** cargar, por ejemplo, Juan Pérez, DNI 30111222, contraseña `clave1`,
    sueldo por día 20000. Cerrar sesión.
-3. Volver a ingresar como Administrador y en **Productos › Nuevo producto** cargar "Coca Cola 500ml"
-   (Bebidas, $1500, stock 10) y "Alfajor" (Golosinas, $800, stock 3).
-4. En **Precios y promociones**, seleccionar el alfajor y aplicarle 10 % (queda a $720).
+3. Volver a ingresar a Administración y en **Productos › Nuevo producto** cargar "Coca Cola"
+   (marca Coca-Cola, Bebidas, unidad ml, costo $1000, margen 50 % → $1500, stock 20) y "Alfajor"
+   (marca Arcor, Golosinas, unidad Unidad, costo $640, margen 25 % → $800, stock 3).
+4. En **Productos › Precios y promociones**, seleccionar el alfajor y aplicarle 10 % (queda a $720).
 5. Cerrar sesión. Ingresar como **Empleado** (Juan Pérez, `clave1`): se marca su asistencia.
 6. **Abrir caja** con $5000 de monto inicial.
 7. **Nueva venta:** agregar 3 gaseosas y 2 alfajores, elegir Efectivo y confirmar. El total es
    3 × $1500 + 2 × $720 = **$5940**.
 8. **Cerrar caja:** el resumen muestra efectivo $5940 y efectivo esperado en caja $10940.
-9. Como Administrador, en **Reportes** se ve la venta, el sueldo del día ($20000) y el cierre.
+9. En **Administración › Reportes** se ve la venta, el sueldo del día ($20000) y el cierre.
 
 ## 4. Reglas de negocio
 
@@ -243,9 +264,13 @@ Los campos se validan al tocar el botón de guardar o ingresar. Los errores apar
 | | Contraseña | Tag `Contraseña` (4 caracteres o más). |
 | | Sueldo por día | Tag `Decimal` y además **mayor a cero**. |
 | Alta / edición de producto | Código | Tag `Números`, hasta 20 dígitos, único. No se puede cambiar al editar. |
-| | Nombre | Tag `Texto`, hasta 40 caracteres. |
+| | Descripción | Tag `Texto`, hasta 40 caracteres. |
+| | Marca | Tag `Texto`, hasta 30 caracteres. |
 | | Categoría | Tag `Texto`, hasta 30 caracteres. |
-| | Precio | Tag `Decimal` y **mayor a cero**. |
+| | Unidad de medida | Tag `Texto`, hasta 15 caracteres. |
+| | Costo | Tag `Decimal` y **mayor a cero**. |
+| | Margen de ganancia | Tag `Decimal` (0 es válido). |
+| | Precio de venta | Solo lectura: se calcula con costo y margen. |
 | | Stock | Tag `Números`, hasta 6 dígitos (0 es válido). |
 | | Proveedor | Opcional, hasta 40 caracteres. |
 | Monto inicial de caja | Monto | Tag `Decimal` (0 es válido). |
@@ -371,13 +396,13 @@ necesita (el `Sistema` y, si corresponde, el `Empleado`).
 
 ```mermaid
 flowchart TD
-    I[FormInicio] -->|Administrador| LA[FormLoginAdmin]
+    I[FormInicio] -->|Administración| LA[FormLoginAdmin]
     LA -->|contraseña OK| PA[FormPanelAdmin]
     PA --> FE[FormEmpleados]
     FE --> FAE[FormAltaEmpleado]
     PA --> FP[FormProductos]
     FP --> FAP[FormAltaProducto]
-    PA --> FPR[FormPromociones]
+    FP --> FPR[FormPromociones]
     PA --> FR[FormReportes]
     I -->|Empleado| LE[FormLoginEmpleado]
     LE -->|contraseña OK| PE[FormPanelEmpleado]
@@ -445,9 +470,12 @@ binaria** en un único archivo: `Documentos\ArchivosKiosco\sistema.dat`.
 advertencia. Es una decisión consciente para respetar el formato "sin base de datos, con serialización
 binaria" del enunciado.
 
-**Importante:** el formato binario depende de la estructura exacta de las clases. Si se agrega, quita o
+**Importante:** el formato binario depende de la estructura exacta de las clases. Si se quita o
 renombra un campo del modelo, un `sistema.dat` viejo puede dejar de abrirse (ver
-[Problemas frecuentes](#9-problemas-frecuentes)).
+[Problemas frecuentes](#9-problemas-frecuentes)). Los campos **agregados** después de la primera versión
+(en `Producto`: marca, unidad de medida, costo y margen) se declaran con `[OptionalField]`, así que un
+archivo viejo sigue abriendo y esos datos quedan vacíos o en 0. Por la misma razón la propiedad
+`Producto.Nombre` conserva su nombre aunque en pantalla se muestre como "Descripción".
 
 ### 6.6 Validación con ErrorProvider y Tag
 
@@ -500,8 +528,8 @@ la configuración regional de Windows.
 |---|---|
 | `Persona` | Base abstracta: datos personales, edad calculada y asistencias. |
 | `Empleado` | Contraseña, sueldo por día y ventas. Realiza las ventas (`RealizarVenta`). |
-| `Administrador` | Da de alta y baja empleados y productos; contraseña por defecto `123123`. |
-| `Producto` | Código, nombre, categoría, precio, stock, proveedor y promoción. |
+| `Administrador` | Usuario de Administración: da de alta y baja empleados y productos; contraseña por defecto `123123`. |
+| `Producto` | Código, descripción (`Nombre`), marca, categoría, unidad de medida, costo, margen, precio, stock, proveedor y promoción. |
 | `Venta` | Carrito y venta confirmada; arma el ticket. |
 | `ItemVenta` | Un renglón de la venta (copia de los datos del producto). |
 | `Caja` | Apertura y cierre, historial de ventas, totales y sueldos. |
@@ -516,21 +544,21 @@ la configuración regional de Windows.
 | Clase | Para qué sirve |
 |---|---|
 | `Validador` | Validación de campos por `Tag` con `ErrorProvider`. |
-| `Estilo` | Colores comunes de formularios, botones y grillas, y carga del logo. |
+| `Estilo` | Colores comunes de formularios, botones y grillas, pantalla completa, centrado de menús y carga del logo. |
 
 **Pantallas** (`Kiosco/Formularios`)
 
 | Formulario | Para qué sirve |
 |---|---|
-| `FormInicio` | Pantalla inicial: elegir Administrador o Empleado. |
-| `FormLoginAdmin` | Login del administrador. |
+| `FormInicio` | Pantalla inicial: elegir Administración o Empleado. |
+| `FormLoginAdmin` | Login de Administración. |
 | `FormLoginEmpleado` | Login del empleado; marca la asistencia. |
-| `FormPanelAdmin` | Menú del administrador. |
+| `FormPanelAdmin` | Panel de Administración (menú). |
 | `FormEmpleados` | Lista de empleados, ficha, baja y asistencia. |
 | `FormAltaEmpleado` | Alta de empleado. |
-| `FormProductos` | Lista de productos, búsqueda y baja. |
-| `FormAltaProducto` | Alta y edición de producto. |
-| `FormPromociones` | Promociones y ajuste de precios por categoría. |
+| `FormProductos` | Lista de productos, búsqueda, filtros (proveedor, categoría, promo), baja y acceso a precios y promociones. |
+| `FormAltaProducto` | Alta y edición de producto; calcula el precio con costo y margen. |
+| `FormPromociones` | Promociones, búsqueda y ajuste de precio por marca. |
 | `FormReportes` | Historial de ventas, ventas y sueldos por empleado, cierre de caja. |
 | `FormPanelEmpleado` | Menú del empleado; abrir y cerrar la caja. |
 | `FormMontoInicial` | Diálogo del monto inicial al abrir la caja. |
@@ -569,19 +597,24 @@ ejecución (sin empleados, sin productos y con la caja cerrada). Conviene hacerl
 
 **Agregar un dato a los productos (por ejemplo, "fecha de vencimiento").**
 
-1. En `Modelo/Producto.cs`, agregar la propiedad (con su comentario `///`).
+1. En `Modelo/Producto.cs`, agregar la propiedad (con su comentario `///`). Para no romper los archivos
+   ya guardados, declararla como un campo privado con `[OptionalField]` y una propiedad que devuelva un
+   valor por defecto si viene vacío (como `Marca` o `Costo`).
 2. En `Formularios/FormAltaProducto.Designer.cs` (o con el Diseñador de Visual Studio), agregar el control
    y, si corresponde, su `Tag` de validación.
 3. En `FormAltaProducto.cs`, leer el control al guardar y cargarlo al editar.
 4. En `FormProductos.cs`, agregar la columna en `ConfigurarColumnas()` y el valor en `CargarGrilla()`.
-5. **Borrar el `sistema.dat` viejo** (o migrarlo): al cambiar la estructura de la clase, el archivo
-   anterior deja de ser compatible.
+5. Si no se usó `[OptionalField]`, **borrar el `sistema.dat` viejo** (o migrarlo): al cambiar la
+   estructura de la clase, el archivo anterior deja de ser compatible.
 
 **Agregar una pantalla nueva.**
 
 1. Crear el formulario con el Diseñador (`.cs`, `.Designer.cs` y `.resx`) en `Formularios/`.
 2. Recibir el `Sistema` (y lo que haga falta) por constructor.
-3. Llamar a `Estilo.Aplicar(this)` después de `InitializeComponent()` para heredar el aspecto común.
+3. Llamar a `Estilo.Aplicar(this)` después de `InitializeComponent()` para heredar el aspecto común y
+   abrirse en pantalla completa (en diálogos chicos, `Estilo.Aplicar(this, pantallaCompleta: false)`).
+   Poner `Anchor` a grillas y botones para que se acomoden al maximizar; en menús con pocos botones,
+   `Estilo.CentrarContenido(this)` los mantiene centrados.
 4. Abrirla desde otra pantalla con el patrón `Hide()` / `ShowDialog()` / `Show()`.
 5. Después de cualquier cambio en los datos, llamar a `sistema.Guardar()`.
 

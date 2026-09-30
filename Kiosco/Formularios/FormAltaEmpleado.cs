@@ -20,7 +20,7 @@ namespace Kiosco
         {
             this.sistema = sistema;
             InitializeComponent();
-            Estilo.Aplicar(this);
+            Estilo.Aplicar(this, pantallaCompleta: false);
         }
 
         /// <summary>Carga los combos de día, mes y año de nacimiento.</summary>

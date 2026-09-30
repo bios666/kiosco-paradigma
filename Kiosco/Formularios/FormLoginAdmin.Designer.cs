@@ -53,7 +53,7 @@ namespace Kiosco
             this.lblTitulo.Location = new System.Drawing.Point(0, 20);
             this.lblTitulo.Name = "lblTitulo";
             this.lblTitulo.Size = new System.Drawing.Size(380, 40);
-            this.lblTitulo.Text = "Ingreso de Administrador";
+            this.lblTitulo.Text = "Ingreso a Administración";
             this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             //
             // lblContrasena
@@ -107,7 +107,7 @@ namespace Kiosco
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormLoginAdmin";
-            this.Text = "Kiosco - Administrador";
+            this.Text = "Kiosco - Administración";
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -16,23 +16,33 @@ NOTA TECNICA
 MANUAL COMPLETO
 - Ver MANUAL.md (guia de uso, reglas de negocio y funcionamiento interno).
 
-CONTRASENA DEL ADMINISTRADOR
+CONTRASENA DE ADMINISTRACION
 - Contrasena por defecto: 123123
+- El programa no distingue mayusculas de minusculas (contrasenas, codigos,
+  busquedas y filtros).
+
+PANTALLA
+- El programa arranca en pantalla completa. Las ventanas se pueden minimizar,
+  restaurar y volver a expandir.
 
 ORDEN RECOMENDADO DE CARGA DE DATOS
-1) Ingresar como Administrador (contrasena 123123).
+1) Ingresar a Administracion (contrasena 123123).
 2) Cargar primero los EMPLEADOS (nombre, apellido, DNI, fecha de nacimiento,
    contrasena de al menos 4 caracteres y sueldo por dia).
-3) Cargar luego los PRODUCTOS (codigo numerico, nombre, categoria, precio, stock).
-4) Opcional: configurar promociones o ajustar precios por categoria.
+3) Cargar luego los PRODUCTOS (codigo numerico, descripcion, marca, categoria,
+   unidad de medida, costo, margen de ganancia y stock). El precio de venta se
+   calcula solo: costo x (1 + margen / 100).
+   Las filas en rojo tienen bajo stock (10 unidades o menos).
+4) Opcional: en Productos > "Precios y promociones" configurar promociones o
+   ajustar precios por marca.
 5) Cerrar sesion e ingresar como EMPLEADO: al ingresar se marca la asistencia del dia.
 6) El empleado debe ABRIR LA CAJA (con un monto inicial) antes de poder vender.
 7) Nueva venta: buscar producto, cantidad, agregar al carrito, elegir medio de pago
    y confirmar. Se descuenta el stock y se genera el ticket .txt.
 8) Al terminar el turno, cerrar la caja (desde el panel del empleado o desde
-   Reportes > Cierre de caja del administrador).
+   Administracion > Reportes > Cierre de caja).
 
-REPORTES (ADMINISTRADOR)
+REPORTES (ADMINISTRACION)
 - Historial de ventas por rango de fechas (doble clic sobre una venta = ver ticket).
 - Ventas, dias trabajados y sueldo a pagar por empleado (dias trabajados x sueldo por dia).
 - Cierre de caja e historial de cierres.
